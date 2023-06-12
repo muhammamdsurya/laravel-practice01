@@ -23,8 +23,14 @@
 
     @if ($posts->count())
         <div class="card mb-3">
-            <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top"
-                alt="...">
+            @if ($posts[0]->image)
+                <div style="max-height: 400px; overflow:hidden">
+                    <img src="{{ asset('storage/' . $posts[0]->image) }}" class="img-fluid">
+                </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top"
+                    alt="...">
+            @endif
             <div class="card-body text-center">
                 <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">
                     <h3 class="card-title">{{ $posts[0]->title }}</h3>
@@ -45,7 +51,6 @@
             </div>
         </div>
 
-
         <div class="container">
             <div class="row">
 
@@ -54,9 +59,15 @@
                         <div class="card">
 
                             <div class="position-absolute bg-dark p-3 text-white">
-                                <a href="/blog?category={{ $posts[0]->category->slug }}"
+                                <a href="/blog?category={{ $post->category->slug }}"
                                     class="text-decoration-none text-white">{{ $post->category->name }}</a>
                             </div>
+                            @if ($post->image)
+                                <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid mt-3">
+                            @else
+                                <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}"
+                                    class="img-fluid">
+                            @endif
                             <img src="https://source.unsplash.com/600x400?{{ $post->category->name }}" class="card-img-top"
                                 alt="">
                             <div class="card-body">

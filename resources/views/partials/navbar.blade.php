@@ -21,9 +21,6 @@
                 </li>
             </ul>
 
-
-
-
             <ul class="navbar-nav ms-auto" role="search">
                 @auth
                     <li class="nav-item dropdown text-white">
